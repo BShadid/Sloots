@@ -1,5 +1,5 @@
 #Hi Griff
-#Version 0.4.2
+#Version 0.6.1
 
 import random
 import time
@@ -25,6 +25,7 @@ def instructions():
     print "Three BAR:       10 x bet     Two BAR:       5 x bet"  
     print "Three 7s:        25 x bet     Two 7s:        12.5 x bet"
     print "Three Mystery:   BONUS ROUND"
+    print "Three Bonus:     BONUS GAME"
     print " "
 
 def bonus_round():
@@ -34,7 +35,38 @@ def bonus_round():
     print "Welcome to the bonus round! In this mode, three random numbers will"
     print "be added together, then your bet will be returned times the sum of "
     print "these numbers. Good luck and may RNGesus be with you."
-    
+    print " "
+    print "This doesn't work right now..."
+
+def bonus_round2(n):
+    global score
+    roundy = 0
+    print "Welcome to the bonus round! In this game mode,"
+    print "you will be offered an initial money value"
+    print "that is given to you as a bonus. You can change"
+    print "the bonus offer amount up to 3 times, but it"
+    print "has an equal chance of increasing as decreasing!"
+    print "After 3 changes, you are required to take the"
+    print "fourth and final offer. Good luck!"
+    print " "
+    print " "
+    init_off = random.randint(1, 200)
+    print "OFFER:" + str(init_off)
+    print " "
+    while roundy < 3:
+        x = raw_input("Would you like to change the offer? (Y/N)").lower()
+        if x == "y":
+            init_off += random.randit(-300,300)
+            roundy += 1
+            print init_off
+        elif x == "n":
+            roundy = 3
+        else:
+            print "Please input either 'y' or 'n'"
+    rere = init_off + money
+    score += rere
+    re = str(rere)
+    print "In total, you earned $ %s from the bonus round." % re
 
 def sloots():
     global score
@@ -60,7 +92,7 @@ def sloots():
             print "That doesn't work"
 
         
-    options = ["7", "Churry", "Churry", "Churry", "Churry", "Churry","Blanabber","Blanabber","Blanabber","Blanabber","Gurps","Gurps", "Gurps", "BAR", "BAR", "Mystery"]
+    options = ["7", "Churry", "Churry", "Churry", "Churry", "Churry","Blanabber","Bonus", "Bonus", "Bonus", "Blanabber","Blanabber","Blanabber","Gurps","Gurps", "Gurps", "BAR", "BAR", "Mystery"]
     yes = True
     while (yes):
         a = raw_input("Are you ready to spin? (Y/N) ").lower()
@@ -85,9 +117,9 @@ def sloots():
     if a == "y":
         true = True
         while (true):
-            one = options[random.randint(0,15)]
-            two = options[random.randint(0,15)]
-            three = options[random.randint(0,15)]
+            one = options[random.randint(0,18)]
+            two = options[random.randint(0,18)]
+            three = options[random.randint(0,18)]
             print " "
             print one
             wait(1)
@@ -112,6 +144,8 @@ def sloots():
                     score += money
                 elif one == "7":
                     score += money * 26
+                elif one == "Bonus":
+                    bonus_round2(money)
             elif one == two or one == three:
                 wait(1)
                 print "Two of a kind!"
