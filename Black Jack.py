@@ -9,7 +9,7 @@ def g_deck(suits,cards):
 suits = ["Clubs", "Spades", "Hearts", "Diamonds"]
 cards = ["Ace", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack",\
          "Queen", "King"]
-#values = {"Ace": [1,11],"Jack": 10, "Queen": 10, "King":10}
+
 deck = Cards(g_deck(suits,cards))
 deck.shuffle()
 dealer = []
@@ -83,7 +83,6 @@ if __name__ == "__main__":
             
         print "Player:", val(player)
         
-        #I should isolate this for invalid inputs
         if stand_p == False:
             c = raw_input("Hit or stand? ").lower()
             if c == "h" or c == "hit":
